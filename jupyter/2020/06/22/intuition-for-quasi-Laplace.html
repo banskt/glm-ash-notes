@@ -16,7 +16,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Saikat Banerjee"},"description":"Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.","@type":"BlogPosting","headline":"Quasi-Laplace approximation for logistic model","dateModified":"2020-06-22T00:00:00-05:00","datePublished":"2020-06-22T00:00:00-05:00","url":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Saikat Banerjee"},"description":"Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.","mainEntityOfPage":{"@type":"WebPage","@id":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html"},"@type":"BlogPosting","url":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html","headline":"Quasi-Laplace approximation for logistic model","dateModified":"2020-06-22T00:00:00-05:00","datePublished":"2020-06-22T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/glm-ash-notes/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://banskt.github.io/glm-ash-notes/feed.xml" title="GLM with ash prior" /><link rel="shortcut icon" type="image/x-icon" href="/glm-ash-notes/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Quasi-Laplace approximation for logistic model | GLM with ash prior</title>
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-06-22T00:00:00-05:00" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Saikat Banerjee"},"description":"Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.","@type":"BlogPosting","headline":"Quasi-Laplace approximation for logistic model","dateModified":"2020-06-22T00:00:00-05:00","datePublished":"2020-06-22T00:00:00-05:00","url":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Saikat Banerjee"},"description":"Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.","mainEntityOfPage":{"@type":"WebPage","@id":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html"},"@type":"BlogPosting","url":"https://banskt.github.io/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html","headline":"Quasi-Laplace approximation for logistic model","dateModified":"2020-06-22T00:00:00-05:00","datePublished":"2020-06-22T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -95,7 +95,7 @@ window.onload = wrap_img;
           </span>
         </label>
 
-        <div class="trigger"><a class="page-link" href="/glm-ash-notes/about/">About Me</a><a class="page-link" href="/glm-ash-notes/search/">Search</a><a class="page-link" href="/glm-ash-notes/categories/">Tags</a></div>
+        <div class="trigger"></div>
       </nav></div>
 </header>
 <main class="page-content" aria-label="Content">
@@ -211,7 +211,7 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
 <span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"../utils/"</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">"../../utils/"</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">mpl_stylesheet</span>
 <span class="n">mpl_stylesheet</span><span class="o">.</span><span class="n">banskt_presentation</span><span class="p">(</span><span class="n">fontfamily</span> <span class="o">=</span> <span class="s1">'latex-clearsans'</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span> <span class="n">colors</span> <span class="o">=</span> <span class="s1">'banskt'</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="mi">72</span><span class="p">)</span>
 </pre></div>
@@ -274,11 +274,14 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## collapse-hide</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># collapse-hide</span>
 
 <span class="k">def</span> <span class="nf">standardize</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
     <span class="n">Xnorm</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">))</span> 
@@ -313,6 +316,7 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
 </div>
 </div>
 
+    </details>
 </div>
     
 
@@ -327,11 +331,14 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## collapse-hide</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># collapse-hide</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'There are </span><span class="si">{</span><span class="n">ncausal</span><span class="si">}</span><span class="s1"> non-zero coefficients with variance </span><span class="si">{</span><span class="n">betavar</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 
@@ -352,6 +359,7 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
 </div>
 </div>
 
+    </details>
 <div class="output_wrapper">
 <div class="output">
 
@@ -401,11 +409,14 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## collapse-hide</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># collapse-hide</span>
 
 <span class="k">def</span> <span class="nf">get_log_likelihood</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
     <span class="n">Xbeta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
@@ -516,6 +527,7 @@ The precision matrix $\mathbf{\Lambda}$ is defined as a diagonal matrix, $\mathb
 </div>
 </div>
 
+    </details>
 </div>
     
 
@@ -540,11 +552,14 @@ Here, we assume that we know $\mathbf{\Lambda}$ and use the best possible $\math
     
     
 <div class="cell border-box-sizing code_cell rendered">
+<details class="description">
+      <summary class="btn btn-sm" data-open="Hide Code" data-close="Show Code"></summary>
+        <p></p>
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## collapse-hide</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># collapse-hide</span>
 
 <span class="n">bchoose</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">))[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
 <span class="n">nplotx</span> <span class="o">=</span> <span class="mi">20</span>
@@ -589,6 +604,7 @@ Here, we assume that we know $\mathbf{\Lambda}$ and use the best possible $\math
 </div>
 </div>
 
+    </details>
 </div>
     
 
@@ -669,6 +685,7 @@ Here, we assume that we know $\mathbf{\Lambda}$ and use the best possible $\math
 
     <div class="footer-col-wrapper">
       <div class="footer-col">
+        <!--
         <p class="feed-subscribe">
           <a href="/glm-ash-notes/feed.xml">
             <svg class="svg-icon orange">
@@ -676,10 +693,10 @@ Here, we assume that we know $\mathbf{\Lambda}$ and use the best possible $\math
             </svg><span>Subscribe</span>
           </a>
         </p>
+        -->
         <ul class="contact-list">
           <li class="p-name">Saikat Banerjee</li>
-          
-        </ul>
+          <li><a class="u-email" href="https://saik.at/">https://saik.at/</a></li></ul>
       </div>
       <div class="footer-col">
         <p>Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.</p>
