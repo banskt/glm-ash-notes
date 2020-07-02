@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: fastpages
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+title: GLM with ash prior
+description: Notes and ideas (in many cases, incomplete or broken) for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior.
 github_username: banskt
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "glm-ash-notes"
@@ -36,23 +36,30 @@ url: "https://banskt.github.io" # the base hostname & protocol for your site, e.
 #
 baseurl: "/glm-ash-notes" # the subpath of your site, e.g. "/blog".
 
+# Set author name, url and email in footer
+author:
+  name: Saikat Banerjee
+  url: https://saik.at/
+  email:
+
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: fastdotai
-    github: fastai
+    twitter: banskt
+    github: banskt
+    linkedin: banskt
 
 # Set this to true to get LaTeX math equation support
-use_math: 
+use_math: true 
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
-show_description: true
+show_description: false
 
 # Set this to true to display image previews on home page, if they exist
 show_image: false
 
 # Set this to true to display tags on each post
-show_tags: true
+show_tags: false
 
 # Add your Google Analytics ID here if you have one and want to use it
 google_analytics: 
