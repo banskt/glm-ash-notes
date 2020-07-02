@@ -15,3 +15,13 @@ _powered by [fastpages](https://github.com/fastai/fastpages)_
 This repository contains incomplete (and in many cases, broken) ideas and insights
 for implementing generalized linear model (GLM) with adaptive shrinkage (ash) prior. 
 Mostly intended for daily notebook updates and documentation for reproducibility.
+
+### Following files have been modified
+```
+_config.yml
+_includes/post_list.html
+_includes/footer.html
+_sass/minima/custom-styles.scss
+images/favicon.ico
+index.html
+```
