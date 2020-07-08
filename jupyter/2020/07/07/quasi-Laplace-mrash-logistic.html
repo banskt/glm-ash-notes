@@ -168,7 +168,7 @@ window.onload = wrap_img;
 <h3 id="About">
 <a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
 </h3>
-<p>This is a proof of concept implementation of quasi-Laplace approximation with Mr.Ash. The quasi-Laplace approximation introduces a regularizer on the likelihood and approximates the posterior with a Gaussian distribution. This approach can be used for generalized linear model with any link function.</p>
+<p>This is a proof of concept implementation of <a href="/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html">quasi-Laplace approximation</a> with Mr.Ash. The quasi-Laplace approximation introduces a regularizer on the likelihood and approximates the posterior with a Gaussian distribution. This approach can be used for generalized linear model with any link function.</p>
 <p>Bayesian logistic regression with a Gaussian prior (ridge regression) uses the Laplace approximation to approximate the posterior with a Gaussian distribution. The variational treatment of logistic model by Jordan and Jaakkola (2000) also leads to a Gaussian approximation of the posterior distribution. The greater flexibility of the variational approximation leads to improved accuracy compared to Laplace method.</p>
 <p>Here, I compare the quasi-Laplace approach with cross-validated Lasso ($L_1$ penalty). I used the $R^2$ statistic by Tjur<sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup> to quantify the quality of classification, and the Gini index<sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup> to quantify the sparsity of the coefficients.
 </p>
