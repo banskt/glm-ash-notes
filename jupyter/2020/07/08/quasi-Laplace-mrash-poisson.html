@@ -171,9 +171,9 @@ window.onload = wrap_img;
 <a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
 </h3>
 <p>This is a proof of concept implementation of <a href="/glm-ash-notes/jupyter/2020/06/22/intuition-for-quasi-Laplace.html">quasi-Laplace approximation</a> with Mr.Ash. The quasi-Laplace approximation introduces a regularizer on the likelihood and approximates the posterior with a Gaussian distribution. This approach can be used for generalized linear model with any link function. See the <a href="/glm-ash-notes/jupyter/2020/07/07/quasi-Laplace-mrash-logistic.html">implementation for logistic model</a>.</p>
-<p>The variational treatment of Poisson model restricts the factorized distributions to have a Gaussian distribution. Here, the quasi-Laplace treatment restricts the posterior to have a Gaussian distribution and the factorized distributions appear naturally.</p>
-<p>I compare the quasi-Laplace approach with "blackbox" PoissonRegressor from Python scikit-learn. I set the regularization strength <code>alpha</code> to approximately 0.1 over number of samples in order to mimic the Ridge regression.</p>
-<p>I used the mean Poisson deviance to quantify the quality of classification, and the Gini index<sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup> to quantify the sparsity of the coefficients.</p>
+<p>The variational treatment of Poisson model restricts the factorized distributions to have a Gaussian distribution. Instead, here we restrict the posterior to have a Gaussian distribution and the factorized distributions appear naturally.</p>
+<p>Here, we compare the quasi-Laplace approach with "blackbox" PoissonRegressor from Python scikit-learn. We have set the regularization strength <code>alpha</code> to approximately 1.0 over number of samples.</p>
+<p>We used the mean Poisson deviance to quantify the quality of classification, and the Gini index<sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup> to quantify the sparsity of the coefficients.</p>
 
 </div>
 </div>
@@ -694,44 +694,11 @@ $\mathbf{X}$ is centered and scaled such that for each variable $j$, the varianc
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Hold the result summary statistic in a data frame</p>
+<p>Create a data frame for result summary</p>
 
 </div>
 </div>
 </div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ytest</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[array([4, 0, 2, ..., 2, 0, 4]), array([  7,   2, 182, ...,  50,   8,   0])]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -771,7 +738,7 @@ $\mathbf{X}$ is centered and scaled such that for each variable $j$, the varianc
 <a class="anchor" href="#Fitting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Fitting<a class="anchor-link" href="#Fitting"> </a>
 </h3>
 <ul>
-<li>Lasso</li>
+<li>Poisson Regressor (GLM_py)</li>
 </ul>
 
 </div>
